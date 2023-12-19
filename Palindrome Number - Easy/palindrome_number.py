@@ -1,9 +1,9 @@
 class Solution:
-    def two_sum(self, x)->bool:
+    def __init__(self) -> None:
+        pass
+    def palindrome_number(self, x)->bool:
         list_x = [symbol for symbol in str(x)]
-        print(list_x)
         for iter in range(int(len(list_x)/2)):
-            print(list_x[iter], list_x[-1-iter])
             if list_x[iter] != list_x[-1-iter]:
                 return False
 
@@ -11,6 +11,8 @@ class Solution:
 
 
 if __name__ == '__main__':
-    x = 123553219
-
-    print (Solution.two_sum('_', x))
+    solution1 = Solution()
+    print(solution1.palindrome_number(x=123553219))
+    print(solution1.palindrome_number(x=121))
+    print(solution1.palindrome_number(x=12321))
+    print(solution1.palindrome_number(x=-121))
