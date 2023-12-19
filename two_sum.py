@@ -1,4 +1,7 @@
 class Solution:
+    def __init__(self) -> None:
+        pass
+
     def two_sum(self, nums:list[int], target:int)->list[int]:
 
         # for num_id, num in enumerate(nums):
@@ -17,7 +20,10 @@ class Solution:
                 continue
 
 if __name__ == '__main__':
-    nums = [3,2,4]
-    target = 6
 
-    print (Solution.two_sum('_', nums=nums, target=target))
+    solution1 = Solution()
+    print (solution1.two_sum([2,7,11,15], 9))
+    print (solution1.two_sum([3,3], 6))
+    print (solution1.two_sum([3,2,4], 6))
+    print (solution1.two_sum([1,8,4,4,16,8], 16))
+    
