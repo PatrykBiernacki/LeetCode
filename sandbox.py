@@ -1,6 +1,2 @@
-x = 40
+'''script for testing functionality'''
 
-if -10 >= x or x >= 10:
-    print (True)
-else:
-    print (False)
