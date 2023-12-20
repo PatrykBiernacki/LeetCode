@@ -4,62 +4,47 @@ class Solution:
     def __init__(self) -> None:
         pass
 
-    def threeSum_unoptimized(self, nums: list[int]) -> list[list[int]]:
-        triplets = []
-        while len(nums) >=3:
-            for index, value in enumerate(nums[1:]):
-                if len(nums) < index+2:
-                    del nums[0]
-                    break
-                remaining_val = 0 - nums[0] - nums[index+1]
-                if remaining_val in nums[index+2:]:
-                    for check_set in triplets:                        
-                        if {nums[0], nums[index+1], nums[nums.index(remaining_val)]} == set(check_set):
-                            break
-                    else:
-                        triplets.append([nums[0], nums[index+1], nums[nums.index(remaining_val)] ])
-            del nums[0]
-        return triplets
-    
-def threeSum(self, nums: list[int]) -> list[list[int]]:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
         
-        positives = []
-        negatives = []
-        zeroes = []
+        positives = defaultdict(int)
+        negatives = defaultdict(int)
+        zeroes = 0
         triplets = set()
 
         'Split list into positives negatives and zeroes for handling'
         for num in nums:
 
             if num > 0:
-                positives.append(num)
+                positives[num] += 1
             elif num < 0:
-                negatives.append(num)    
+                negatives[num] += 1  
             else:
-                zeroes.append(0)
+                zeroes += 1
 
-        if len(zeroes) >=3:
+        if zeroes >= 3:
             triplets.add((0,0,0))
 
-        if len(zeroes) and len(positives) and len(negatives):
+        if zeroes and positives and negatives:
             for positiv in positives:
                 if 0 - positiv in negatives:
                     add_list = [0 - positiv, 0, positiv]
                     triplets.add(tuple(add_list))
 
-        if len(positives) and len(negatives):
-            for index_pos, positiv in enumerate(positives):
-                for index_neg, negativ in enumerate(negatives):
+        if positives and negatives:
+            for positiv in positives:
+                for negativ in negatives:
 
-                    if 0 - positiv - negativ < 0 and 0 - positiv - negativ in negatives[index_neg+1:]:
-                        add_list = [0 - positiv - negativ, negativ, positiv]
-                        add_list.sort()
-                        triplets.add(tuple(add_list))
+                    if 0 - positiv - negativ < 0 and 0 - positiv - negativ in negatives:
+                        if 0 - positiv - negativ != negativ or negatives[negativ] >= 2:
+                            add_list = [0 - positiv - negativ, negativ, positiv]
+                            add_list.sort()
+                            triplets.add(tuple(add_list))
 
-                    elif 0 - positiv - negativ > 0 and 0 - positiv - negativ in positives[index_pos+1:]:
-                        add_list = [0 - positiv - negativ, negativ, positiv]
-                        add_list.sort()
-                        triplets.add(tuple(add_list))
+                    elif 0 - positiv - negativ > 0 and 0 - positiv - negativ in positives:
+                        if 0 - positiv - negativ != positiv or positives[positiv] >= 2:
+                            add_list = [0 - positiv - negativ, negativ, positiv]
+                            add_list.sort()
+                            triplets.add(tuple(add_list))
 
         return triplets
 
