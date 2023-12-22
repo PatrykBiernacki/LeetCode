@@ -4,7 +4,7 @@ class Solution:
     def permute_oneliner(self, nums: list[int]) -> list[list[int]]:
         return set(permutations(nums))
 
-    def permute(self, nums: list[int]) -> list[list[int]]:
+    def permute_2nd(self, nums: list[int]) -> list[list[int]]:
         
         answer_set = set()
 
@@ -19,6 +19,19 @@ class Solution:
 
         return answer_set
     
+
+    def permute(self, nums: list[int]) -> list[list[int]]:
+
+        def permuter(nums:list)->list:
+            if len(nums) <= 1:
+                    yield nums
+                    return
+            for perm in permuter(nums[1:]):
+                for i in range(len(nums)):
+                    # nb elements[0:1] works in both string and list contexts
+                    yield perm[:i] + nums[0:1] + perm[i:]
+        
+        return list(permuter(nums))
      
 if __name__ == '__main__':
     solution1 = Solution()

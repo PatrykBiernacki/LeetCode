@@ -1,2 +1,1 @@
 '''script for testing functionality'''
-
