@@ -19,11 +19,13 @@ class Solution:
 
         return answer_set
     
-
-
+     
 if __name__ == '__main__':
     solution1 = Solution()
     print(solution1.permute([1,2,3]))
+    print('')
     print(solution1.permute([0,1]))
+    print('')
     print(solution1.permute([1]))
-    print(solution1.permute([1,2,3,4]))
+    print('')
+    print(solution1.permute([1,2,3,4,5]))
